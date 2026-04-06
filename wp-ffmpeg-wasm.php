@@ -26,14 +26,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'enqueue_block_editor_assets', 'wp_ffmpeg_wasm_enqueue_config' );
 
 function wp_ffmpeg_wasm_enqueue_config() {
-	$assets_url = plugin_dir_url( __FILE__ ) . 'assets/';
+	$core_url = plugins_url( 'assets/ffmpeg-core.js', __FILE__ );
 
 	wp_add_inline_script(
 		'wp-block-editor',
 		sprintf(
-			'window.__ffmpegWasmConfig = { coreUrl: %s, wasmUrl: %s };',
-			wp_json_encode( $assets_url . 'ffmpeg-core.js' ),
-			wp_json_encode( $assets_url . 'ffmpeg-core.wasm' )
+			'window.__ffmpegWasmConfig = { coreUrl: %s, wasmUrl: "" };',
+			wp_json_encode( $core_url )
 		),
 		'before'
 	);
@@ -63,10 +62,8 @@ function wp_ffmpeg_wasm_register_rest_route() {
 }
 
 function wp_ffmpeg_wasm_rest_config() {
-	$assets_url = plugin_dir_url( __FILE__ ) . 'assets/';
-
 	return array(
-		'coreUrl' => $assets_url . 'ffmpeg-core.js',
-		'wasmUrl' => $assets_url . 'ffmpeg-core.wasm',
+		'coreUrl' => plugins_url( 'assets/ffmpeg-core.js', __FILE__ ),
+		'wasmUrl' => '', // WASM is inlined in coreUrl as base64; this field is unused.
 	);
 }

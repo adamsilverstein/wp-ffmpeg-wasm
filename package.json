@@ -1,0 +1,11 @@
+{
+	"name": "wp-ffmpeg-wasm",
+	"version": "0.1.0",
+	"private": true,
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"build": "node scripts/build.mjs"
+	}
+}
