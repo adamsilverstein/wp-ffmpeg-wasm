@@ -40,6 +40,19 @@ an animated GIF upload is detected. You can also install it manually:
 1. Upload the plugin files to `/wp-content/plugins/wp-ffmpeg-wasm/`
 2. Activate the plugin through the 'Plugins' screen in WordPress
 
+== Deployment ==
+
+This plugin is automatically deployed to the WordPress.org plugin repository
+when a new GitHub release is published, using the
+[10up/action-wordpress-plugin-deploy](https://github.com/10up/action-wordpress-plugin-deploy) GitHub Action.
+
+To enable deployment, add the following secrets to the GitHub repository settings:
+
+* `SVN_USERNAME` – Your WordPress.org SVN username.
+* `SVN_PASSWORD` – Your WordPress.org SVN password.
+
+A ZIP file of the release is also automatically attached to the GitHub release.
+
 == Changelog ==
 
 = 0.1.0 =
